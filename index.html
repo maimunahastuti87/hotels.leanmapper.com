@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borneo Elite Hotels - Pengalaman Menginap Terbaik di Kalimantan</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50;
+            background-color: #f9f7f4;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1e9e0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b68b6e;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5a3c;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            border-bottom: 3px solid #b68b6e;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #b68b6e;
+            font-style: italic;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #b68b6e;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .book-btn {
+            background: #b68b6e;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .book-btn:hover {
+            background: transparent;
+            border-color: #b68b6e;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44,62,80,0.7), rgba(182,139,110,0.3));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #b68b6e;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 40px;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .hero-btn:hover {
+            background: transparent;
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 3;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slider-dot.active {
+            background: #b68b6e;
+            transform: scale(1.3);
+        }
+
+        /* Welcome Section */
+        .welcome {
+            padding: 6rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: #b68b6e;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .welcome-text {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .welcome-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: #f9f7f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #b68b6e;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: #b68b6e;
+            color: white;
+        }
+
+        /* Rooms Section */
+        .rooms {
+            padding: 6rem 5%;
+            background: #f9f7f4;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(182,139,110,0.2);
+        }
+
+        .room-image {
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.1);
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #b68b6e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            z-index: 1;
+        }
+
+        .room-info {
+            padding: 2rem;
+        }
+
+        .room-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .room-price {
+            font-size: 1.5rem;
+            color: #b68b6e;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .room-price span {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .room-amenities {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .room-amenities i {
+            color: #b68b6e;
+            margin-right: 0.3rem;
+        }
+
+        .room-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            color: #2c3e50;
+            text-decoration: none;
+            border: 2px solid #b68b6e;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        .room-btn:hover {
+            background: #b68b6e;
+            color: white;
+        }
+
+        /* Experiences Section */
+        .experiences {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experiences::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .experiences-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .experiences .section-title {
+            color: white;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .exp-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .exp-icon {
+            font-size: 2.5rem;
+            color: #b68b6e;
+            margin-bottom: 1rem;
+        }
+
+        .exp-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .exp-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(44,62,80,0.9), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: white;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 5%;
+            background: #f9f7f4;
+            position: relative;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial-card.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        .testimonial-card i {
+            font-size: 3rem;
+            color: #b68b6e;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #b68b6e;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-arrow:hover {
+            background: #b68b6e;
+            color: white;
+        }
+
+        /* Location & Contact */
+        .location {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .location-info {
+            padding-right: 2rem;
+        }
+
+        .location-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-detail i {
+            font-size: 1.2rem;
+            color: #b68b6e;
+            width: 30px;
+        }
+
+        .contact-form {
+            background: #f9f7f4;
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #b68b6e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #8b5a3c;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #b68b6e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #b68b6e;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #b68b6e;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">Borneo<span>Elite</span></a>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#rooms">Kamar</a></li>
+            <li><a href="#experiences">Pengalaman</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#location">Lokasi</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <button class="book-btn">Pesan Sekarang</button>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle" data-aos="fade-down">Selamat Datang di</div>
+            <h1 data-aos="fade-up">Borneo Elite Hotels</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Pengalaman menginap mewah di tengah keindahan alam Kalimantan. Nikmati keramahan tropis dan kenyamanan modern.</p>
+            <a href="#rooms" class="hero-btn" data-aos="fade-up" data-aos-delay="200">Lihat Kamar</a>
+        </div>
+        <div class="slider-nav">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome" data-aos="fade-up">
+        <div class="section-subtitle">Borneo Elite</div>
+        <h2 class="section-title">Pengalaman Menginap Premium</h2>
+        <p class="welcome-text">Terletak di jantung Kalimantan, Borneo Elite Hotels menawarkan perpaduan sempurna antara kemewahan modern dan keindahan alam tropis. Setiap detail dirancang untuk memberikan pengalaman menginap tak terlupakan.</p>
+        <div class="welcome-features">
+            <div class="feature-item" data-aos="fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <h3>150+ Kamar</h3>
+                <p>Berbagai tipe kamar eksklusif</p>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>5 Restoran</h3>
+                <p>Kuliner lokal & internasional</p>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h3>Spa & Wellness</h3>
+                <p>Relaksasi total</p>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-swimmer"></i>
+                </div>
+                <h3>Infinity Pool</h3>
+                <p>Pemandangan hutan tropis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="rooms">
+        <div class="section-subtitle" data-aos="fade-up">Kamar & Suite</div>
+        <h2 class="section-title" data-aos="fade-up">Tipe Kamar Mewah</h2>
+        <div class="rooms-grid">
+            <div class="room-card" data-aos="fade-up">
+                <div class="room-image">
+                    <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deluxe Room">
+                    <div class="room-badge">Populer</div>
+                </div>
+                <div class="room-info">
+                    <h3>Deluxe Room</h3>
+                    <div class="room-price">Rp 1.500.000 <span>/malam</span></div>
+                    <div class="room-amenities">
+                        <span><i class="fas fa-wifi"></i> WiFi</span>
+                        <span><i class="fas fa-tv"></i> TV</span>
+                        <span><i class="fas fa-coffee"></i> Breakfast</span>
+                    </div>
+                    <p>Kamar luas dengan pemandangan kota, fasilitas lengkap untuk kenyamanan Anda.</p>
+                    <a href="#" class="room-btn">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="room-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="room-image">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d577334c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Executive Suite">
+                    <div class="room-badge">Best Seller</div>
+                </div>
+                <div class="room-info">
+                    <h3>Executive Suite</h3>
+                    <div class="room-price">Rp 2.500.000 <span>/malam</span></div>
+                    <div class="room-amenities">
+                        <span><i class="fas fa-wifi"></i> WiFi</span>
+                        <span><i class="fas fa-tv"></i> TV 50"</span>
+                        <span><i class="fas fa-coffee"></i> Breakfast</span>
+                        <span><i class="fas fa-bath"></i> Bathtub</span>
+                    </div>
+                    <p>Suite eksklusif dengan ruang tamu terpisah dan fasilitas premium.</p>
+                    <a href="#" class="room-btn">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="room-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="room-image">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Presidential Suite">
+                    <div class="room-badge">Limited</div>
+                </div>
+                <div class="room-info">
+                    <h3>Presidential Suite</h3>
+                    <div class="room-price">Rp 5.000.000 <span>/malam</span></div>
+                    <div class="room-amenities">
+                        <span><i class="fas fa-wifi"></i> WiFi</span>
+                        <span><i class="fas fa-tv"></i> TV 65"</span>
+                        <span><i class="fas fa-coffee"></i> Breakfast</span>
+                        <span><i class="fas fa-spa"></i> Spa</span>
+                    </div>
+                    <p>Kemewahan tertinggi dengan private butler service dan pemandangan terbaik.</p>
+                    <a href="#" class="room-btn">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section id="experiences" class="experiences">
+        <div class="experiences-content">
+            <div class="section-subtitle" data-aos="fade-up">Pengalaman Eksklusif</div>
+            <h2 class="section-title" data-aos="fade-up">Lebih dari Sekadar Menginap</h2>
+            <div class="exp-grid">
+                <div class="exp-card" data-aos="fade-up">
+                    <div class="exp-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Eco Tourism</h3>
+                    <p>Jelajahi keindahan hutan hujan tropis Kalimantan dengan guide profesional</p>
+                </div>
+                <div class="exp-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="exp-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Cooking Class</h3>
+                    <p>Belajar memasak masakan khas Kalimantan dengan chef lokal</p>
+                </div>
+                <div class="exp-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="exp-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Cultural Night</h3>
+                    <p>Nikmati pertunjukan tari tradisional dan musik khas Borneo</p>
+                </div>
+                <div class="exp-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="exp-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <h3>River Cruise</h3>
+                    <p>Wisata menyusuri sungai Kapuas dengan sunset dinner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="section-subtitle" data-aos="fade-up">Galeri</div>
+        <h2 class="section-title" data-aos="fade-up">Momen di Borneo Elite</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pool">
+                <div class="gallery-overlay">
+                    <h4>Infinity Pool</h4>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant">
+                <div class="gallery-overlay">
+                    <h4>Restaurant</h4>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa">
+                <div class="gallery-overlay">
+                    <h4>Spa</h4>
+                </div>
+            </div>
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+                <img src="https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lobby">
+                <div class="gallery-overlay">
+                    <h4>Grand Lobby</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-subtitle" data-aos="fade-up">Testimonial</div>
+        <h2 class="section-title" data-aos="fade-up">Kata Mereka</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-card active">
+                <i class="fas fa-quote-left"></i>
+                <p>"Pengalaman menginap yang luar biasa! Pelayanan sangat ramah, kamar bersih dan nyaman. Pemandangan dari kamar benar-benar memukau. Pasti akan kembali lagi."</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108777-847ef6b6f6f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sarah">
+                    <div class="author-info">
+                        <h4>Sarah Wijaya</h4>
+                        <p>Business Traveler</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Borneo Elite benar-benar hotel bintang 5 dengan sentuhan lokal yang kental. Makanan khas Kalimantan di restorannya luar biasa enak. Recommended!"</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Budi">
+                    <div class="author-info">
+                        <h4>Budi Santoso</h4>
+                        <p>Food Blogger</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <button class="testimonial-arrow" id="prevTestimonial"><i class="fas fa-chevron-left"></i></button>
+                <button class="testimonial-arrow" id="nextTestimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section id="location" class="location">
+        <div class="location-container">
+            <div class="location-info" data-aos="fade-right">
+                <div class="section-subtitle">Lokasi & Kontak</div>
+                <h3>Temukan Kami</h3>
+                <div class="location-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Jl. Pangeran Antasari No. 123, Banjarmasin, Kalimantan Selatan 70123</p>
+                </div>
+                <div class="location-detail">
+                    <i class="fas fa-phone"></i>
+                    <p>+62 511 1234 5678</p>
+                </div>
+                <div class="location-detail">
+                    <i class="fas fa-envelope"></i>
+                    <p>reservations@borneoelite.com</p>
+                </div>
+                <div class="location-detail">
+                    <i class="fas fa-clock"></i>
+                    <p>Reservasi: 24/7</p>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-left">
+                <h3 style="margin-bottom: 1.5rem;">Pesan Kamar</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nama Lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="No. Telepon" required>
+                    </div>
+                    <div class="form-group">
+                        <select>
+                            <option>Tipe Kamar</option>
+                            <option>Deluxe Room</option>
+                            <option>Executive Suite</option>
+                            <option>Presidential Suite</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" placeholder="Check-in">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" placeholder="Check-out">
+                    </div>
+                    <button type="submit" class="submit-btn">Cek Ketersediaan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Borneo Elite</h3>
+                <p>Hotel mewah yang memadukan kemewahan modern dengan keindahan alam Kalimantan. Memberikan pengalaman menginap tak terlupakan.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rooms">Kamar</a></li>
+                    <li><a href="#experiences">Pengalaman</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li><a href="#">Restoran</a></li>
+                    <li><a href="#">Spa & Wellness</a></li>
+                    <li><a href="#">Meeting Room</a></li>
+                    <li><a href="#">Wedding Package</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Dapatkan promo spesial dan info terbaru</p>
+                <div style="display: flex; margin-top: 1rem;">
+                    <input type="email" placeholder="Email Anda" style="padding: 0.5rem; flex: 1;">
+                    <button style="padding: 0.5rem 1rem; background: #b68b6e; border: none; color: white; cursor: pointer;">Kirim</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Borneo Elite Hotels. All rights reserved. Designed for Kalimantan's finest hospitality.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Hero Slider
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Testimonial Slider
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.getElementById('prevTestimonial');
+        const nextBtn = document.getElementById('nextTestimonial');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonialCards.forEach(card => card.classList.remove('active'));
+            testimonialCards[index].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + testimonialCards.length) % testimonialCards.length;
+            showTestimonial(currentTestimonial);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+            showTestimonial(currentTestimonial);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.8rem 5%';
+                navbar.style.background = 'rgba(44, 62, 80, 0.98)';
+            } else {
+                navbar.style.padding = '1.2rem 5%';
+                navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Booking button
+        document.querySelector('.book-btn').addEventListener('click', function() {
+            document.getElementById('location').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Tim kami akan segera menghubungi Anda.');
+        });
+    </script>
+</body>
+</html>
